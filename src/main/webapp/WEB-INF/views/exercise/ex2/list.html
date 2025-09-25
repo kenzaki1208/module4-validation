@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Danh sách bài hát</h2>
+        <a th:href="@{/exercise/ex2/songs/create}" class="btn btn-primary">➕ Thêm bài hát mới</a>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
+            <table class="table table-striped table-hover mb-0">
+                <thead class="table-dark">
+                <tr>
+                    <th>Tên</th>
+                    <th>Nghệ sĩ</th>
+                    <th>Thể loại</th>
+                    <th>Nghe</th>
+                    <th>Sửa</th>
+                    <th>Xoá</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="song : ${songs}">
+                    <td th:text="${song.name}"></td>
+                    <td th:text="${song.artist}"></td>
+                    <td th:text="${song.genre}"></td>
+                    <td><a class="btn btn-sm btn-success" th:href="@{/exercise/ex2/songs/play/{id}(id=${song.id})}">▶ Nghe</a></td>
+                    <td><a class="btn btn-sm btn-warning" th:href="@{/exercise/ex2/songs/edit/{id}(id=${song.id})}">✏ Sửa</a></td>
+                    <td><a class="btn btn-sm btn-danger" th:href="@{/exercise/ex2/songs/delete/{id}(id=${song.id})}">🗑 Xoá</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

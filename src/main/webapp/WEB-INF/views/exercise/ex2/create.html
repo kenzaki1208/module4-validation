@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body class="bg-light">
+
+<div class="container mt-5">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0">Thêm bài hát mới</h4>
+    </div>
+    <div class="card-body">
+      <form th:action="@{/exercise/ex2/songs/create}"
+            th:object="${song}" method="post" enctype="multipart/form-data">
+
+        <div class="mb-3">
+          <label class="form-label">Tên bài hát:</label>
+          <input type="text" th:field="*{name}" class="form-control" />
+          <div class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Nghệ sĩ:</label>
+          <input type="text" th:field="*{artist}" class="form-control" />
+          <div class="text-danger" th:if="${#fields.hasErrors('artist')}" th:errors="*{artist}"></div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Thể loại:</label>
+          <input type="text" th:field="*{genre}" class="form-control" />
+          <div class="text-danger" th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}"></div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">File nhạc:</label>
+          <input type="file" name="file" accept="audio/*" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-success">💾 Lưu</button>
+        <a th:href="@{/exercise/ex2/songs}" class="btn btn-secondary">⬅ Quay lại danh sách</a>
+      </form>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
